@@ -25,6 +25,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "build": { 
+      "babel": { 
+        "include": [ "@ui-kitten/components" ] 
+      }
+    },
+    "packagerOpts": {
+      "sourceExts": ["jsx", "js", "ts", "tsx"],
+      "baseUrl": "./",
+      "projectRoot": ""
     }
+    
   }
 }

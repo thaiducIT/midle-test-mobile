@@ -3,18 +3,27 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
-import SettingScreen from "../../screens/settings_screen/SettingsScreen";
-import DNTUNewsScreen from "../../screens/home_screen/HomeScreen";
-import StudentNewsScreen from "../../screens/dntu_news_screen/DNTUNewsScreen";
+import DNTUNewsScreen from "@screens/dntu_news_screen/DNTUNewsScreen";
+import SettingScreen from "@screens/settings_screen/SettingsScreen";
+import StudentNewsScreen from "@screens/student_news_screen/StudentNewsScreen";
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = () => {
+const BottomTabNavigator = ({props}) => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        
         screenOptions={({ route }) => ({
+          tabBarLabelStyle:{
+            fontSize:12,
+            paddingBottom:4
+          },
+          tabBarActiveTintColor:'tomato',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: {
+            display: 'flex',
+          },
+          headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
@@ -22,20 +31,16 @@ const BottomTabNavigator = () => {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "Settings") {
               iconName = focused ? "settings" : "settings-outline";
-            } else if(route.name==="Student News")
-            {
-              iconName= focused ? "ios-newspaper":"newspaper-outline"
+            } else if (route.name === "Student News") {
+              iconName = focused ? "ios-newspaper" : "newspaper-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
-        tabBarOptions={{
-    activeTintColor: 'tomato',
-    inactiveTintColor: 'gray',
-  }}>
-        <Tab.Screen  name="DNTU News" component={DNTUNewsScreen} />
+      >
+        <Tab.Screen name="DNTU News" component={DNTUNewsScreen} />
         <Tab.Screen name="Student News" component={StudentNewsScreen} />
-        <Tab.Screen name="Settings" component={SettingScreen} />
+        <Tab.Screen name="Settings" component={SettingScreen} {...props}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
