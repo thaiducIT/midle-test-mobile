@@ -19,7 +19,10 @@
     "git": "^0.1.5",
     "react": "18.2.0",
     "react-native": "0.71.3",
+    "react-native-extra-dimensions-android": "^1.2.5",
+    "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "~2.9.0",
+    "react-native-safe-area-context": "^4.5.0",
     "react-native-svg": "^13.4.0",
     "react-native-vector-icons": "^9.2.0"
   },

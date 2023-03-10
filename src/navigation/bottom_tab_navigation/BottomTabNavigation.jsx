@@ -7,13 +7,15 @@ import DNTUNewsScreen from "@screens/dntu_news_screen/DNTUNewsScreen";
 import SettingScreen from "@screens/settings_screen/SettingsScreen";
 import StudentNewsScreen from "@screens/student_news_screen/StudentNewsScreen";
 
+
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = ({props}) => {
+const BottomTabNavigator = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
+          
           tabBarLabelStyle:{
             fontSize:12,
             paddingBottom:4
@@ -23,7 +25,7 @@ const BottomTabNavigator = ({props}) => {
           tabBarStyle: {
             display: 'flex',
           },
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
@@ -40,7 +42,7 @@ const BottomTabNavigator = ({props}) => {
       >
         <Tab.Screen name="DNTU News" component={DNTUNewsScreen} />
         <Tab.Screen name="Student News" component={StudentNewsScreen} />
-        <Tab.Screen name="Settings" component={SettingScreen} {...props}/>
+        <Tab.Screen name="Settings" component={SettingScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -5,10 +5,11 @@ module.exports = function(api) {
     plugins: [
       ['module-resolver', {
         alias: {
-          '@components': './src/components',
+          '@component': './src/component',
           '@screens': './src/screens',
           '@utils': './src/utils',
           '@navigation':'./src/navigation',
+          '@assets':'./assets'
         }
       }]
     ]
