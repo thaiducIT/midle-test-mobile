@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
   },
   location_name:{
     ...app_typo.size.sz_16,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    color:app_c.HEX.fourth
   },
   temperature:{
     flexDirection:'row',

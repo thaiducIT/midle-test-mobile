@@ -25,7 +25,7 @@ const LocationInfo = ({ latitude, longitude }) => {
       <View>
         <View style={styles.location_block}>
           <View>
-            <EvilIcons name="location" size={30} />
+            <EvilIcons name="location" size={30} color={'red'}/>
           </View>
           {location ? (
             <View style={styles.location}>
