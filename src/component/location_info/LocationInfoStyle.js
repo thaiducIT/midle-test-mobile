@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     height:50,
     alignItems:'center',
     justifyContent:'space-around',
-    backgroundColor:"#ECECEC",
+    // backgroundColor:"#ECECEC",
     ...app_sh.rounded_6,
     ...app_sp.mt_6
   },

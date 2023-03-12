@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import styles from "./LocationInfoStyle";
 import { EvilIcons, FontAwesome,FontAwesome5 } from "react-native-vector-icons";
-import { app_c } from "@assets/globals/styles";
+import { app_c, app_sp, app_typo } from "@assets/globals/styles";
 
 const LocationInfo = ({ latitude, longitude }) => {
   const [location, setLocation] = useState(null);
@@ -34,7 +34,7 @@ const LocationInfo = ({ latitude, longitude }) => {
               </Text>
             </View>
           ) : (
-            <Text>Loading Your Location ...</Text>
+            <Text style={{color:'red',...app_typo.size.sz_16,fontWeight:'400'}}>Loading Your Location ...</Text>
           )}
         </View>
           <View style={styles.temperature}>
