@@ -1,4 +1,4 @@
-import { app_c, app_sh, app_sp } from '@assets/globals/styles';
+
 import React, { useState } from 'react';
 import { Modal, StyleSheet, TouchableWithoutFeedback, View, Image, Button ,TouchableOpacity,Dimensions} from 'react-native';
 import {AntDesign} from 'react-native-vector-icons'
@@ -53,7 +53,7 @@ const ModalShowImage = ({ url }) => {
               style={[styles.fullLogo, imageSize]}
               resizeMode="contain"
             />
-            <TouchableOpacity onPress={closeImage} style={{...app_sh.circle,width:50,height:50,backgroundColor:app_c.HEX.ext_second,justifyContent:'center',alignItems:'center',marginTop:20}} ><AntDesign name="close" size={30} style={styles.btn_close}/></TouchableOpacity>
+            <TouchableOpacity onPress={closeImage} style={{width:50,height:50,justifyContent:'center',alignItems:'center',marginTop:20}} ><AntDesign name="close" size={50} style={styles.btn_close}/></TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>
       </Modal>
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: '100%',
+    height: 200,
   },
   modal: {
     flex: 1,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     marginTop:40
   },
   btn_close:{
-    color:app_c.HEX.sub_primary,
+    color:'#ffff'
   }
 });
 

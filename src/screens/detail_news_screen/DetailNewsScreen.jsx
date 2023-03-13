@@ -1,15 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import ModalShowImage from '@component/modal_show_image/ModalShowImage';
 
 const DetailNewsScreen = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>COVID-19 Vaccines: What You Need to Know</Text>
-        <Image
-          source={require('../../../assets/image/covid19.jpg')}
-          style={styles.image}
-        />
+        <ModalShowImage url={'https://www.aapnainfotech.com/wp-content/uploads/2020/07/covid-19.jpg'}/>
         <Text style={styles.author}>By John Smith</Text>
         <Text style={styles.date}>March 12, 2023</Text>
         <Text style={styles.content}>
@@ -37,7 +35,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 200,
+    height: 300,
     resizeMode: 'cover',
     marginBottom: 10,
   },

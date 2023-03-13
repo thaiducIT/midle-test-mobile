@@ -30,7 +30,7 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === "DNTUNews") {
+            if (route.name === "DNTU") {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "Settings") {
               iconName = focused ? "settings" : "settings-outline";
@@ -41,7 +41,7 @@ const BottomTabNavigator = () => {
           },
         })}
       >
-        <Tab.Screen name="DNTUNews" component={DNTUNewsNavigation} />
+        <Tab.Screen name="DNTU" component={DNTUNewsNavigation} />
         <Tab.Screen name="Student News" component={StudentNewsScreen} />
         <Tab.Screen name="Settings" component={SettingScreen} />
       </Tab.Navigator>

@@ -1,4 +1,3 @@
-// SplashScreen.js
 
 import { app_c } from '@assets/globals/styles';
 import React from 'react';
