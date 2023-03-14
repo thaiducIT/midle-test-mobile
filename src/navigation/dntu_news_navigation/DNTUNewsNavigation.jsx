@@ -16,7 +16,7 @@ const DNTUNewsNavigation = () => {
       {(props) => <DNTUNewsScreen {...props} />}
       </DNTUNewsStack.Screen>
       <DNTUNewsStack.Screen name="News">
-        {(props) => <DetailNewsScreen {...props} />}
+      {(props) => <DetailNewsScreen {...props} />}
       </DNTUNewsStack.Screen>
     </DNTUNewsStack.Navigator>
   );

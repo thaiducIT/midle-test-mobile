@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import ModalShowImage from '@component/modal_show_image/ModalShowImage';
 
 const DetailNewsScreen = () => {
+ 
   return (
     <ScrollView>
       <View style={styles.container}>

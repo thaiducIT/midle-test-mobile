@@ -7,6 +7,7 @@ import DNTUNewsScreen from "@screens/dntu_news_screen/DNTUNewsScreen";
 import SettingScreen from "@screens/settings_screen/SettingsScreen";
 import StudentNewsScreen from "@screens/student_news_screen/StudentNewsScreen";
 import DNTUNewsNavigation from "@navigation/dntu_news_navigation/DNTUNewsNavigation";
+import StudentNewsNavigation from "@navigation/student_news_navigation/StudentNewsNavigation";
 
 
 const Tab = createBottomTabNavigator();
@@ -34,7 +35,7 @@ const BottomTabNavigator = () => {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "Settings") {
               iconName = focused ? "settings" : "settings-outline";
-            } else if (route.name === "Student News") {
+            } else if (route.name === "Student") {
               iconName = focused ? "ios-newspaper" : "newspaper-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -42,7 +43,7 @@ const BottomTabNavigator = () => {
         })}
       >
         <Tab.Screen name="DNTU" component={DNTUNewsNavigation} />
-        <Tab.Screen name="Student News" component={StudentNewsScreen} />
+        <Tab.Screen name="Student" component={StudentNewsNavigation} />
         <Tab.Screen name="Settings" component={SettingScreen} />
       </Tab.Navigator>
     </NavigationContainer>

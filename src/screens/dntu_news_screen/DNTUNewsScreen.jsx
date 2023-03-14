@@ -5,7 +5,7 @@ import * as Location from "expo-location";
 
 import styles from "./DNTUNewsScreenStyles";
 import { Ionicons, AntDesign } from "react-native-vector-icons";
-import { app_c } from "@assets/globals/styles";
+import { app_c } from "../../../assets/globals/styles";
 import { FlatList } from "react-native-gesture-handler";
 
 import ModalShowImage from "@component/modal_show_image/ModalShowImage";
