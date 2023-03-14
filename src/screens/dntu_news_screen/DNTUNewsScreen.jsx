@@ -85,10 +85,9 @@ const DNTUNewsScreen = ({navigation}) => {
   // const handleReloadLocation = () => {
   //   getCurrentLocationAsync();
   // };
-
   const RenderListItem = ({ item }) => {
     return (
-      <TouchableOpacity style={styles.list_item_container} onPress={() => navigation.navigate('News')}>
+      <TouchableOpacity style={styles.list_item_container} onPress={() => navigation.navigate('News', {item:item})}>
         <View style={styles.cover_image_container}>
           <Image
             resizeMode="cover"

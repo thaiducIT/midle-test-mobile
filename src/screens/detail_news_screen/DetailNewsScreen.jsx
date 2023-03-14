@@ -2,20 +2,17 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import ModalShowImage from '@component/modal_show_image/ModalShowImage';
 
-const DetailNewsScreen = () => {
+const DetailNewsScreen = ({route}) => {
+  const {item} = route.params
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.title}>COVID-19 Vaccines: What You Need to Know</Text>
-        <ModalShowImage url={'https://www.aapnainfotech.com/wp-content/uploads/2020/07/covid-19.jpg'}/>
-        <Text style={styles.author}>By John Smith</Text>
-        <Text style={styles.date}>March 12, 2023</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <ModalShowImage url={item.image}/>
+        <Text style={styles.author}>{item.author}</Text>
+        <Text style={styles.date}>{item.date}</Text>
         <Text style={styles.content}>
-          The COVID-19 pandemic has been a global health crisis that has affected millions of people worldwide. The development of vaccines has been a significant breakthrough in the fight against the virus. With the availability of several vaccines, many people are wondering about their effectiveness, safety, and side effects.
-  
-          Here is what you need to know about COVID-19 vaccines:
-  
-          1. Types of Vaccines: Currently, there are three types of COVID-19 vaccines...
+          {item.content}
         </Text>
       </View>
     </ScrollView>

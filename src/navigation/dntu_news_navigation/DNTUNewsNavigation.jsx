@@ -9,9 +9,7 @@ const DNTUNewsStack = createNativeStackNavigator();
 
 const DNTUNewsNavigation = () => {
   return (
-    <DNTUNewsStack.Navigator
-      initialRouteName="SettingScreen"
-    >
+    <DNTUNewsStack.Navigator    >
       <DNTUNewsStack.Screen name="DNTU News" >
       {(props) => <DNTUNewsScreen {...props} />}
       </DNTUNewsStack.Screen>
