@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import ModalShowImage from '@component/modal_show_image/ModalShowImage';
+import MarkFormat from '@component/mark_format/MarkFormat';
+
 
 const DetailNewsScreen = ({route}) => {
   const {item} = route.params
@@ -14,6 +16,7 @@ const DetailNewsScreen = ({route}) => {
         <Text style={styles.content}>
           {item.content}
         </Text>
+        
       </View>
     </ScrollView>
   );

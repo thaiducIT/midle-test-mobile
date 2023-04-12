@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
   },
   temperature:{
     flexDirection:'row',
-    width:280,
+    width:362,
     height:50,
     alignItems:'center',
     justifyContent:'space-around',
     // backgroundColor:"#ECECEC",
     ...app_sh.rounded_6,
-    ...app_sp.mt_6
+    ...app_sp.mt_6,
   },
   temperature_cur:{
     ...app_typo.size.sz_18,
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     color:app_c.HEX.fourth,
     ...app_typo.size.sz_14,
     fontWeight:'600'
-  }
+  },
+  
 })
 export default styles

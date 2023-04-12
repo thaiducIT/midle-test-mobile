@@ -16,6 +16,7 @@ import {
 import BottomTabNavigator from "@navigation/bottom_tab_navigation/BottomTabNavigation";
 
 import SplashScreen from "@screens/splash_screen/SplashScreen";
+import { VirtualizedList } from "react-native";
 const App = () => {
   const [theme, setTheme] = useState("light");
 

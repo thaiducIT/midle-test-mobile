@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, Image,ScrollView,Platform} from "react-native";
+import { View, TouchableOpacity, Image,ScrollView,Platform,FlatList} from "react-native";
 import { ApplicationProvider, Layout, Text } from "@ui-kitten/components";
 import * as Location from "expo-location";
 
 import styles from "./DNTUNewsScreenStyles";
 import { Ionicons, AntDesign } from "react-native-vector-icons";
 import { app_c } from "../../../assets/globals/styles";
-import { FlatList } from "react-native-gesture-handler";
+
 
 import ModalShowImage from "@component/modal_show_image/ModalShowImage";
 import LocationInfo from "@component/location_info/LocationInfo";
 import RectangleButton from "@component/retangle_button/RetangleButton";
-
+import RenderItem from "@component/render_item/RenderItem";
 
 const listNews = [
   {
@@ -23,6 +23,9 @@ const listNews = [
     date: "07/08/2022",
     image:
       "https://dntu.edu.vn/images/resized/dang-ky-hien-mau-tinh-nguyen-lan-2-nam-hoc-2022-2023.jpg",
+    isNew:true,
+    isImportant:false,
+    isPopular:false
   },
   {
     id: 2,
@@ -32,6 +35,9 @@ const listNews = [
     author: "John Doe",
     date: "07/08/2022",
     image: "https://dntu.edu.vn/Data/News/120/images/phucuong.jpg",
+    isNew:true,
+    isImportant:false,
+    isPopular:false
   },
   {
     id: 3,
@@ -41,6 +47,9 @@ const listNews = [
     author: "Samantha Lee",
     date: "07/08/2022",
     image: "https://dntu.edu.vn/Data/News/120/images/cowsoso%20vatchat.jpg",
+    isNew:false,
+    isImportant:false,
+    isPopular:false
   },
   {
     id: 4,
@@ -50,6 +59,9 @@ const listNews = [
     author: "Mike Johnson",
     date: "07/08/2022",
     image: "https://dntu.edu.vn/Data/News/120/images/chuphinhluuniem.jpg",
+    isNew:false,
+    isImportant:false,
+    isPopular:false
   },
 ];
 
@@ -69,40 +81,6 @@ const DNTUNewsScreen = ({navigation}) => {
   useEffect(() => {
     getCurrentLocationAsync();
   });
-  // useEffect(() => {
-  //   (async () => {
-  //     let { status } = await Location.requestForegroundPermissionsAsync();
-  //     if (status !== 'granted') {
-  //       setErrorMsg('Permission to access location was denied');
-  //       return;
-  //     }
-
-  //     let location = await Location.getCurrentPositionAsync({});
-  //     setLocation(location);
-  //   })();
-  // }, []);
-
-  // const handleReloadLocation = () => {
-  //   getCurrentLocationAsync();
-  // };
-  const RenderListItem = ({ item }) => {
-    return (
-      <TouchableOpacity style={styles.list_item_container} onPress={() => navigation.navigate('News', {item:item})}>
-        <View style={styles.cover_image_container}>
-          <Image
-            resizeMode="cover"
-            source={{ uri: item.image }}
-            style={styles.cover_image}
-          />
-        </View>
-        <View style={styles.news_content_container}>
-          <Text style={styles.news_title} numberOfLines={2}>{item.title}</Text>
-          <Text style={styles.news_content} numberOfLines={4}>{item.content}</Text>
-          <Text style={styles.date} numberOfLines={1}>{item.date}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
 
   return (
     <Layout style={{ flex: 1 }}>
@@ -117,27 +95,19 @@ const DNTUNewsScreen = ({navigation}) => {
                 />
               )}
             </View>
-            {/* <TouchableOpacity style={styles.btn_reload_temperature}>
-              <Ionicons
-                name="reload-circle-outline"
-                size={30}
-                color={app_c.HEX.fourth}
-              />
-            </TouchableOpacity> */}
           </View>
         </View>
         <View style={styles.main}>
           <View style={styles.main_content}>
-            <View style={styles.category}>
+            <TouchableOpacity style={styles.category} onPress={() => navigation.navigate('Latest News')}>
               <Text style={styles.category_name}>Tin mới</Text>
               <AntDesign name="right" size={25} />
-            </View>
+            </TouchableOpacity>
             <View style={styles.item_container}>
               <FlatList
                 data={listNews}
-                renderItem={({ item }) => <RenderListItem item={item} />}
+                renderItem={({ item }) => <RenderItem item={item} />}
                 keyExtractor={(item) => item.id.toString()}
-                scrollEnabled={false}
               />
             </View>
             
@@ -150,9 +120,8 @@ const DNTUNewsScreen = ({navigation}) => {
             <View style={styles.item_container}>
               <FlatList
                 data={listNews}
-                renderItem={({ item }) => <RenderListItem item={item} />}
+                renderItem={({ item }) => <RenderItem item={item} />}
                 keyExtractor={(item) => item.id.toString()}
-                scrollEnabled={false}
               />
             </View>
           </View>

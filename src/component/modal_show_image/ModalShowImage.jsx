@@ -10,6 +10,7 @@ const ModalShowImage = ({ url }) => {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
+  console.log(windowHeight)
 
   const openImage = () => {
     setImageOpen(true);
@@ -25,8 +26,8 @@ const ModalShowImage = ({ url }) => {
     let newWidth = windowWidth * 1;
     let newHeight = newWidth * (height / width);
     
-    if (newHeight > windowHeight * 0.8) {
-      newHeight = windowHeight * 1.2;
+    if (newHeight > windowHeight * 1) {
+      newHeight = windowHeight * 1;
       newWidth = newHeight * (width / height);
     }
     
@@ -37,12 +38,14 @@ const ModalShowImage = ({ url }) => {
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={openImage}>
-        <Image
-          source={{ uri: url }}
-          style={styles.logo}
-          onLayout={handleImageLayout}
-          resizeMode='contain'
-        />
+        <View style={{width:'100%'}}>
+          <Image
+            source={{ uri: url }}
+            style={[styles.logo]}
+            onLayout={handleImageLayout}
+            resizeMode='contain'
+          />
+        </View>
       </TouchableWithoutFeedback>
 
       <Modal transparent visible={isImageOpen}>
@@ -50,10 +53,10 @@ const ModalShowImage = ({ url }) => {
           <View style={styles.modal}>
             <Image
               source={{ uri: url }}
-              style={[styles.fullLogo, imageSize]}
+              style={[styles.fullLogo, imageSize,{width:windowWidth}]}
               resizeMode="contain"
             />
-            <TouchableOpacity onPress={closeImage} style={{width:50,height:50,justifyContent:'center',alignItems:'center',marginTop:20}} ><AntDesign name="close" size={50} style={styles.btn_close}/></TouchableOpacity>
+            <TouchableOpacity onPress={closeImage} style={{width:40,height:40,position:'absolute',top:45,right:15}} ><AntDesign name="close" size={35} style={styles.btn_close}/></TouchableOpacity>
           </View>
         </TouchableWithoutFeedback>
       </Modal>
@@ -70,13 +73,13 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: '100%',
-    height: 230,
+    height:230
   },
   modal: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0,0, 1)',
   },
   fullLogo: {
     marginTop:40
