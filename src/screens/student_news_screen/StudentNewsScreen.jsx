@@ -6,65 +6,46 @@ import { ApplicationProvider, Layout, Text } from "@ui-kitten/components";
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import styles from './StudenNewsScreenStyle';
 
-
 const listNews = [
   {
     id: '1',
     title: "Thông báo về việc đóng học phí học kỳ III khóa 15, khóa 18 học kỳ II năm học 2022-2023",
     day: '11',
     monthyear: '03/2023',
-    content: `Trường Đại học Công nghệ Đồng Nai (DNTU) thông báo đến Quý phụ huynh và sinh viên DNTU thông tin về tài khoản Ngân hàng, Quý phụ huynh và sinh viên có thể đóng học phí bằng hình thức chuyển khoản qua một trong hai Ngân hàng sau;
-    a. Đơn vị hưởng: Trường Đại học Công nghệ Đồng Nai
-    Số tài khoản: 113000018996
-    Tại Ngân hàng: Ngân hàng TMCP Công thương Việt Nam Chi nhánh Đồng Nai
-    
-    b. Đơn vị hưởng: Trường Đại học Công nghệ Đồng Nai
-    Số tài khoản: 5900201006856
-    Tại Ngân hàng: Ngân hàng Nông nghiệp và Phát triển nông thôn Chi nhánh Đồng Nai`,
-    url:'https://forms.gle/xLtaemsNgqDc4wbD8',
-
+    content:{
+    html:
+      `
+      <p class='title'>
+         Hello World!
+      </p>
+      `
+    },
+    mixedStyles:`{
+      p:{
+        font-size:25
+      }
+    }`
   },
   {
     id: '2',
     title: "Đóng học phí qua tài khoản của ngân hàng",
     day: '10',
     monthyear: '03/2023',
-    content: `Trường Đại học Công nghệ Đồng Nai (DNTU) thông báo đến Quý phụ huynh và sinh viên DNTU thông tin về tài khoản Ngân hàng, Quý phụ huynh và sinh viên có thể đóng học phí bằng hình thức chuyển khoản qua một trong hai Ngân hàng sau;
-    a. Đơn vị hưởng: Trường Đại học Công nghệ Đồng Nai
-    Số tài khoản: 113000018996
-    Tại Ngân hàng: Ngân hàng TMCP Công thương Việt Nam Chi nhánh Đồng Nai
-    
-    b. Đơn vị hưởng: Trường Đại học Công nghệ Đồng Nai
-    Số tài khoản: 5900201006856
-    Tại Ngân hàng: Ngân hàng Nông nghiệp và Phát triển nông thôn Chi nhánh Đồng Nai`,
+    content: ``,
   },
   {
     id: '3',
     title: "Thông báo về việc rà soát tiến độ học và thi các môn kỹ năng",
     day: '02',
     monthyear: '03/2023',
-    content: `Trường Đại học Công nghệ Đồng Nai (DNTU) thông báo đến Quý phụ huynh và sinh viên DNTU thông tin về tài khoản Ngân hàng, Quý phụ huynh và sinh viên có thể đóng học phí bằng hình thức chuyển khoản qua một trong hai Ngân hàng sau;
-    a. Đơn vị hưởng: Trường Đại học Công nghệ Đồng Nai
-    Số tài khoản: 113000018996
-    Tại Ngân hàng: Ngân hàng TMCP Công thương Việt Nam Chi nhánh Đồng Nai
-    
-    b. Đơn vị hưởng: Trường Đại học Công nghệ Đồng Nai
-    Số tài khoản: 5900201006856
-    Tại Ngân hàng: Ngân hàng Nông nghiệp và Phát triển nông thôn Chi nhánh Đồng Nai`,
+    content: ``,
   },
   {
     id: '4',
     title: "Thông báo về việc mở lớp học lại và cải thiện",
     day: '01',
     monthyear: '03/2023',
-    content: `Trường Đại học Công nghệ Đồng Nai (DNTU) thông báo đến Quý phụ huynh và sinh viên DNTU thông tin về tài khoản Ngân hàng, Quý phụ huynh và sinh viên có thể đóng học phí bằng hình thức chuyển khoản qua một trong hai Ngân hàng sau;
-    a. Đơn vị hưởng: Trường Đại học Công nghệ Đồng Nai
-    Số tài khoản: 113000018996
-    Tại Ngân hàng: Ngân hàng TMCP Công thương Việt Nam Chi nhánh Đồng Nai
-    
-    b. Đơn vị hưởng: Trường Đại học Công nghệ Đồng Nai
-    Số tài khoản: 5900201006856
-    Tại Ngân hàng: Ngân hàng Nông nghiệp và Phát triển nông thôn Chi nhánh Đồng Nai`,
+    content: ``,
   },
 
 ];

@@ -9,7 +9,8 @@ module.exports = function(api) {
           '@screens': './src/screens',
           '@utils': './src/utils',
           '@navigation':'./src/navigation',
-          '@assets':'./assets'
+          '@assets':'./assets',
+          '@libs':'./src/libs'
         }
       }]
     ]
