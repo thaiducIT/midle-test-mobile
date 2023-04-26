@@ -79,6 +79,7 @@ const DNTUNewsScreen = ({navigation}) => {
   };
 
   useEffect(() => {
+   
     getCurrentLocationAsync();
   });
 

@@ -32,7 +32,22 @@ const styles=StyleSheet.create({
   news_title:{
     color:app_c.HEX.fourth,
     ...app_typo.size.sz_16,
-    fontWeight:'600'
+    fontWeight:'600',
+    flex:7
+  },
+  new_content_header:{
+    flexDirection:'row'
+  },
+  btn_like:{
+    width:40,
+    height:40,
+    justifyContent:'center',
+    borderColor:app_c.HEX.fourth,
+    borderWidth:1,
+    borderRadius:20,
+    alignItems:'center'
+    
+    
   },
   news_content:{
     ...app_sp.mt_6
