@@ -2,19 +2,16 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import ModalShowImage from '@component/modal_show_image/ModalShowImage';
 import { MarkFormat } from '@libs/mark-format/react-native';
-import { full_2, full_3 } from '@libs/mark-format/assets/data';
 
 const DetailNewsScreen = ({route}) => {
   const {item} = route.params
-  console.log(item)
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.title}>{item.title}</Text>
-        <ModalShowImage url={item.image}/>
+        <MarkFormat text={ item.title } />
         <Text style={styles.author}>{item.author}</Text>
         <Text style={styles.date}>{item.date}</Text>
-        <MarkFormat text={item.content} />
+        <MarkFormat text={ item.content } />
       </View>
     </ScrollView>
   );

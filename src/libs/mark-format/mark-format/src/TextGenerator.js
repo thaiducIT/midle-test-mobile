@@ -170,6 +170,7 @@ TextGenerator.prototype.createTree = function (markformat_and_text_array) {
       // Vì đây là 2 Format cơ bản cho nên là add thẳng vào luôn.
       if (result.formats[0] === LOW_MARK_CONVENTIONS.UNORDERED_LIST.TYPE || result.formats[0] === LOW_MARK_CONVENTIONS.ORDERED_LIST.TYPE) {
         // Bỏ \n đi.
+        console.log("BEFORE LIST ITEM: ", this.mfTree[this.mfTree.length - 1]);
         if (this.newLineStr(this.mfTree[this.mfTree.length - 1])) this.mfTree.pop();
         // console.log("LIST DETECTED")
         // Trước khi loại bỏ format "UNORDERED_LIST" hoặc "ORDERED_LIST"
@@ -183,9 +184,14 @@ TextGenerator.prototype.createTree = function (markformat_and_text_array) {
           // console.log("CREATE LIST")
           currentList = new MFNode([item], [format]);
           currentList._id = currentList.createRandomMFNodeID();
-        } else {
+        } else if (currentList.formats[0] === format) {
           // console.log("ADD ITEM TO LIST")
           currentList.addValue(item);
+        } else {
+          this.mfTree.push(currentList);
+          currentList = null;
+          currentList = new MFNode([item], [format]);
+          currentList._id = currentList.createRandomMFNodeID();
         }
       }
       //
@@ -193,17 +199,14 @@ TextGenerator.prototype.createTree = function (markformat_and_text_array) {
       // Trước khi add thì check qua currentList có lưu ref của list nào trong đó hay không?
       else {
         if (currentList) {
-          // Bỏ \n đi.
-          this.mfTree.pop();
           this.mfTree.push(currentList);
           currentList = null;
         }
         this.mfTree.push(result);
       }
     } else {
-      if (!this.newLineStr(ele) && currentList) {
-        // Bỏ \n đi.
-        this.mfTree.pop();
+      if ((!this.newLineStr(ele) || ele.split(/[\n\r]/).length >= 3) && currentList) {
+        if (this.newLineStr(this.mfTree[this.mfTree.length - 1])) this.mfTree.pop();
         this.mfTree.push(currentList);
         currentList = null;
       }

@@ -11,66 +11,191 @@ import { FlatList } from "react-native-gesture-handler";
 import ModalShowImage from "@component/modal_show_image/ModalShowImage";
 import LocationInfo from "@component/location_info/LocationInfo";
 import RectangleButton from "@component/retangle_button/RetangleButton";
+import { MarkFormat } from '@libs/mark-format/react-native';
+
 
 
 const listNews = [
   {
     id: 1,
-    title: "New Study Shows Benefits of Yogurt",
-    content: `\n# LỊCH TRÌNH DU LỊCH ĐỒNG NAI
-    Chào mừng đến Đồng Nai - một nơi kết hợp giữa lịch sử, nghệ thuật, ẩm thực và cảnh quan đẹp. Dưới đây là lịch trình của chúng tôi cho chuyến đi của bạn với ngân sách là **5 triệu đồng** và bạn muốn một kỳ nghỉ đôi. Hãy sẵn sàng cho một chuyến đi tuyệt vời và đáng nhớ!
-    
-    ## Ngày 1: Khám phá thành phố Biên Hòa
-    ### Trùng Khánh Memorial House
-    
-    - Địa chỉ: 168T Trần Hưng Đạo, Phường Tân Tiến, Biên Hòa
-    - Giá vé: miễn phí\n- Giờ tham quan: 8:00 sáng - 5:00 chiều
-    [>r] Trùng Khánh Memorial House nằm tại trung tâm thành phố Biên Hòa với kiến trúc phương Tây kết hợp với kiểu Nhật, tọa lạc trong khuôn viên rộng và yên tĩnh. **Nơi đây bao gồm một __bảo tàng__ với các tài liệu, hiện vật** về Trần Trọng Kim - người sáng lập ra Đài Truyền hình Việt Nam và một nhà văn, kịch tác tài ba.
-    
-    ### Công Viên Văn Hóa Đồng Nai\n\n- Địa chỉ: Số 13 đường Phan Chu Trinh, Phường Tân Phong, Biên Hòa
-    - Giá vé: miễn phí\n- Giờ tham quan: 6:00 sáng - 9:00 tối
-    
-    Công Viên Văn Hóa Đồng Nai là một công viên rộng lớn với những cảnh quan đẹp, dường như được thiết kế để thu hút các tín đồ của nghệ thuật và giải trí. Nơi đây cũng là nơi diễn ra các hoạt động văn hóa cho địa phương và các sự kiện giải trí hàng năm.
-    
-    ### Ăn tối tại Chợ Bến Thành
-    
-    - Địa chỉ: 150-152 Lê Duẩn, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh
-    - Giá vé: từ 100.000 đồng - 200.000 đồng
-    - Thời gian hoạt động: 6:00 sáng - 10:00 tối
-    
-    Chợ Bến Thành là một nơi không thể bỏ qua khi đến Sài Gòn, nơi bạn có thể thưởng thức hơn 300 loại đặc sản, các món ăn đường phố và những món ăn truyền thống của Nam Bộ. Đây là nơi lý tưởng cho bữa tối đầu tiên của bạn tại Đồng Nai!\n\n## Ngày 2: Tham quan các điểm đến ngoài trời\n\n### Thiên Đường Thác Bà Đôn\n\n- Địa chỉ: Phường Tân Tiến, Thành phố Biên Hòa\n- Giá vé: 25.000 đồng - 30.000 đồng\n- Giờ tham quan: 8:00 sáng - 5:00 chiều\n\nThác Bà Đôn là một trong những điểm du lịch nổi tiếng tại Đồng Nai, thu hút khách du lịch với giai điệu nhạc nước và những thước phim nước đang chảy. Bạn có thể dạo bộ trên cây cầu xoắn thắt, quan sát thác nước và tìm hiểu sự sống động của đặc sản địa phương.\n\n### Công viên Sơn Tiên\n\n- Địa chỉ: Khu đại lộ Võ Thị Sáu, Phường Tân Phong, TP. Bạn có thể tìm hiểu về lịch sử của thành phố và địa phương này thông qua các hiện vật và trưng bày tại đây.\n\n### Ăn tối tại Nhà hàng Thúy Nga\n\n- Địa chỉ: 180-182 Phạm Văn Thuận, Phường Tân Mai, TP. Biên Hòa \n- Giá vé: từ 200.000 đồng - 350.000 đồng\n- Giờ hoạt động: 10:00 sáng - 10:00 tối\n\nNhà hàng Thúy Nga có không gian sang trọng và menu đa dạng với nhiều món ăn đặc sản và các món ăn được làm từ đặc sản của địa phương.\n\n## Ngày 4: Hưởng thụ nghệ thuật và giải trí\n\n### Sân vận động Thống Nhất\n\n- Địa chỉ: Đường Lê Đức Thọ, Phường Phú Hữu, Quận 9, TP. Hồ Chí Minh\n- Giá vé: từ 50.000 đồng - 200.000 đồng\n- Giờ hoạt động: cả ngày\n\nNếu bạn muốn tham gia một trận bóng đá, đây là nơi lý tưởng để trải nghiệm. Sân vận động Thống Nhất là sân nhà của đội tuyển bóng đá quốc gia Việt Nam và cũng là nơi tổ chức các trận đấu quan trọng của giải bóng đá quốc gia.\n\n### Bảo tàng Mỹ thuật Đông Nam Á\n\n- Địa chỉ: số 7 Lê Văn Sỹ, Phường 1, Quận Tân Bình, TP. Hồ Chí Minh\n- Giá vé: từ 50.000 đồng - 100.000 đồng\n- Giờ tham quan: 9:00 sáng - 5:00 chiều\n\nBảo tàng Mỹ thuật Đông Nam Á hiện có hơn 20.000 tác phẩm của hơn 3.000 nghệ sĩ từ Đông Nam Á và các quốc gia khác. Bạn có thể ngắm nhìn những kiệt tác của nghệ thuật của Đông Nam Á và cảm nhận không gian nghệ thuật độc đáo.\n\n### Câu lạc bộ Thăng Long\n\n- Địa chỉ: số 74 Đỗ Quang, Phường Cống Vị, Quận Ba Đình, TP. Hà Nội\n- Giá vé: từ 50.000 đồng - 200.000 đồng\n- Giờ hoạt động: 9:00 sáng - 10:00 tối\n\nCâu lạc bộ Thăng Long là một nơi tuyệt vời để thưởng thức các bộ phim mình yêu thích, tập trung vào những bộ phim độc đáo, kinh điển của điện ảnh trong nước và nước ngoài. Nơi đây có một quầy bar và các hoạt động giải trí khác để bạn thư giãn sau khi xem phim.\n\n### Ăn tối tại Quán Ăn Người Làm Phim\n\n- Địa chỉ: 74 Nguyễn Khánh Toàn, Phường Quan Hoa, Quận Cầu Giấy, TP.Hà Nội \n- Giá vé: từ 100.000 đồng - 300.000 đồng\n- Giờ hoạt động: 10:00 sáng - 10:00 tối\n\nQuán Ăn Người Làm Phim là một nhà hàng với thiết kế độc đáo, tôn vinh nghệ thuật điện ảnh, với món ăn ngon và giá cả hợp lý.\n\n## Ngày 5: Tận hưởng cuối tuần tuyệt vời\n\n### Khu Du lịch Thác Giang Điền\n\n- Địa chỉ: Xã Phú Lý, Huyện Vĩnh Cửu, Đồng Nai\n- Giá vé: 50.000 đồng - 100.000 đồng\n- Giờ tham quan: 7:00 sáng - 5:30 chiều\n\nKhu Du lịch Thác Giang Điền nằm trong khu rừng Ngầm, với nhiều thác nước đẹp và các khu vườn hoa được bố trí đẹp mắt. Bạn có thể khám phá các khu vườn, thưởng thức đặc sản và tham gia các trò chơi dân gian.\n\n### Chợ Bàu Sen\n\n- Địa chỉ: thị trấn Bến Cát, Huyện Bến Cát, Tỉnh Bình Dương\n- Giá vé: miễn phí\n- Giờ tham quan: 7:00 sáng - 12:00 trưa\n\nChợ Bàu Sen là một chợ nổi tiếng với các loại hàng hoá đa dạng, bao gồm thực phẩm, quần áo, giày dép và đồ dùng gia đình. Bạn có thể tìm mua các món ăn đặc sản và đồ lưu niệm cho những người thân yêu.\n\n### Ăn tối tại Nhà hàng Phố Cổ\n\n- Địa chỉ: 20 Đào Duy Từ, Phường Hàng Buồm, Quận Hoàn Kiếm, TP. Hà Nội \n- Giá vé: từ 200.000 đồng - 400.000 đồng\n- Giờ hoạt động: 10:00 sáng - 10:00 tối\n\nNhà hàng Phố Cổ nằm ở trung tâm Hà Nội, với kiến trúc cổ điển và tinh tế. Nơi đây có các món ăn đặc sản phong phú, đa dạng từ đủ các vùng miền của Việt Nam.\n\n## Tổng kết\n\nĐó là lịch trình của chúng tôi cho chuyến đi tới Đồng Nai, hy vọng rằng bạn sẽ tận dụng hết ngày nghỉ của mình để khám phá được nhiều địa điểm mới lạ, trải nghiệm ẩm thực, tận hưởng không gian thiên nhiên, và tham gia các hoạt động giải trí thú vị. Chúc bạn có một chuyến đi đáng nhớ!\n`,
+    title: `\n**###### Đại hội Thể Thao sinh viên Tỉnh Đồng Nai 2023, Chức “Vô địch” gọi tên DNTU**`,
+    content: `
+Đại hội Thể Thao sinh viên Tỉnh Đồng Nai năm 2023 được tổ chức trong 2 ngày 22, 23/04/2023 với các môn thi đấu: Bóng đá, Bóng chuyền, Bóng rỗ, Kéo co, Bơi lội, nhảy dây đồng đội. Các đội tuyển của Trường Đại học Công nghệ Đồng Nai đã xuất sắc đạt vị trí “Hạng nhất” toàn đoàn.
+Đại hội Thể thao sinh viên Tỉnh Đồng Nai năm 2023 với sự tham dự của Đại học, Cao đẳng trên địa bàn tỉnh Đồng Nai. Đoàn vận động viên Trường Đại học Công nghệ Đồng Nai đã xuất sắc đạt 6/8 môn thi đấu:
+- Bơi lội: Hạng nhất, nhì, ba
+- Nhảy dây đồng đội: Hạng ba
+- Môn kéo co (Nam): Hạng nhất
+- Bóng đá: Vô địch
+- Bóng chuyền: Vô địch
+- Bóng rỗ: Vô địch
+![Hạng Nhất Kéo co (Nam)](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0121.JPG)
+![Hạng 3 - Nhảy dây đồng đội](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0156.JPG)
+![Hạng Nhất, Nhì, Ba - Bơi lội](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0156.JPG)
+![DNTU FC Vô địch bộ môn Bóng đá](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0247.JPG)
+![CLB bóng chuyền DNTU Vô đich Bộ môn Bóng Chuyền](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0192.JPG)
+![CLB Bóng rỗ DNTU Vô địch bộ môn Bóng rổ](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0221.JPG)
+![Hình ảnh Các vận động viên DNTU các môn thi đấu tại Đại hội Thể thao sinh viên Tỉnh Đồng Nai 2023](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0300.JPG)
+Trường Đại học Công nghệ Đồng nai với 2 Trung tâm liên hợp thể thao, Cơ sở vật chất hiện đại là đơn vị tài trợ địa điểm thi đấu cho các vận động viên ở giải đấu năm nay.
+\n
+Tham gia hội thao, hơn 600 vận động viên là sinh viên các trường đại học, cao đẳng trên địa bàn tỉnh đã tham gia thi đấu các môn: bóng chuyền, bóng rổ, bóng đá, kéo co, nhảy bao bố, bơi, cờ vua.
+![Đồng chí Nguyễn Đình Thái - Bí thư Đoàn trường DNTU đã nổ lực rất nhiều trong công tác Đại hội Thể thao sinh viên Tỉnh Đồng Nai với cương vị là "chủ nhà".](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0046.JPG)
+Được đánh giá là hạt giống số 1 của Đại hội Thể thao sinh viên DNTU năm 2023, Trường Đại học Công nghệ Đồng Nai đã hoàn thành xuất sắc chỉ tiêu mà Ban Giám hiệu đã đề ra…hướng tới việc tuyển chọn các vận động viên cho các giải đấu cấp cao hơn.
+![Toàn cảnh Tất cả các Trường Đại học, Cao đẳng trên địa bàn Tỉnh Đồng Nai tham gia Đại hội Thể thao sinh viên Tỉnh Đồng Nai 2023.](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0297.JPG)
+\n
+Xin chúc mừng các vận động viên DNTU.
+`,
     author: "Jane Smith",
-    date: "07/08/2022",
-    image:
-      "https://dntu.edu.vn/images/resized/dang-ky-hien-mau-tinh-nguyen-lan-2-nam-hoc-2022-2023.jpg",
+    date: "25/04/2023",
+    image: "https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/DSC_0297.JPG",
   },
   {
     id: 2,
-    title: "Global Demand for Renewable Energy on the Rise",
+    title: `\n**# Trường Đại học Công nghệ Đồng Nai tổ chức Hội thảo khoa học quốc gia 2023 “Phát huy giá trị văn hóa các dân tộc trong giảng dạy Ngôn ngữ tại các trường Đại học ở Việt Nam hiện nay”**`,
     content:
-      "As concerns over climate change continue to grow, the demand for renewable energy sources such as solar and wind power is increasing worldwide. Experts predict that this trend will continue to accelerate in the coming years.",
+`
+Dự kiến ngày 28/4/2023, Trường Đại học Công nghệ Đồng Nai (DNTU) phối hợp Viện KHXH vùng Tây Nguyên, Trường Đại học Đà Lạt, trường Đại học Sài Gòn đồng tổ chức Hội thảo khoa học quốc gia 2023 chủ đề: “Phát huy giá trị văn hóa các dân tộc trong giảng dạy Ngôn ngữ tại các trường Đại học ở Việt Nam hiện nay”.
+![](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/backdround-man-chieu-1.jpg)
+Chủ đề của Hội thảo đang được các nhà khoa học, các nhà quản lý giáo dục quan tâm hiện nay. Việc kết hợp những giá trị văn hoá truyền thống với những giá trị văn hoá mới trong hoạt động giảng dạy đang là xu hướng mới nhằm bảo tồn cũng như kế thừa và phát huy các giá trị của văn hoá truyền thống của các dân tộc đáng tự hào của ông cha chúng ta.
+\n
+Hội thảo sẽ xoay quanh các chủ đề sau:
+1. Lý luận chung về văn hóa, ngôn ngữ;
+1. Thực tiễn vận dụng và phát huy các giá trị văn hóa truyền thống của các dân tộc trong giảng dạy ngôn ngữ tại trường Đại học;
+1. Các giải pháp khoa học nhằm vận dụng và phát huy các giá trị văn hóa truyền thống của các dân tộc trong giảng dạy ngôn ngữ tại trường Đại học trong thời gian tới.
+\n
+Chương trình làm việc dự kiến xem [tại đây](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/Ch%C6%B0%C6%A1ng-tr%C3%ACnh-H%E1%BB%99i-th%E1%BA%A3o-T04_2023-F.jpg)
+`,
     author: "John Doe",
-    date: "07/08/2022",
-    image: "https://dntu.edu.vn/Data/News/120/images/phucuong.jpg",
+    date: "25/04/2023",
+    image: "https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/backdround-man-chieu-1.jpg",
   },
   {
     id: 3,
-    title: "New Vaccine Shows Promise Against Deadly Virus",
+    title: `**# Đại diện Trường Đại học Công nghệ Đồng Nai làm việc với Công ty LIXIL**`,
     content:
-      "Scientists have developed a new vaccine that appears to be effective against a deadly virus that has been spreading rapidly in recent years. Clinical trials have shown promising results, with the vaccine producing a strong immune response in participants.",
-    author: "Samantha Lee",
-    date: "07/08/2022",
-    image: "https://dntu.edu.vn/Data/News/120/images/cowsoso%20vatchat.jpg",
+`
+Ngày 18/4/2023 Trường Đại học Công nghệ Đồng Nai (DNTU) đã có buổi làm việc với Công ty TNHH Sản xuất toàn cầu LIXIL (LIXIL Global Manufacturing Vietnam Co., Ltd). Công ty TNHH Sản xuất toàn cầu LIXIL (LIXIL) nằm ở khu công nghiệp Long Đức, Đồng Nai, là nhà máy chuyên sản xuất khung cửa sổ, cửa ra vào, các sản phẩm ngoại thất trong kiến trúc nhà ở.
+![](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/LX3.jpg)
+Tham dự buổi làm việc, về phía DNTU:
+\n
+- TS. Trần Đức Thuận -  Phó Hiệu trưởng
+- PGS. TS Lê Thế Vinh - Giảng viên Khoa Công nghệ
+- Thầy Nguyễn Đình Thuật - Trưởng phòng Quan hệ doanh nghiệp
+- Thầy Vũ Vi Minh Quân - Phó phòng Quan hệ doanh nghiệp
+Về phía Công ty LIXIL:
+\n
+- Ông Dương Đình Hơn - Trưởng phòng Hành chính Nhân sự
+![](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/LX4.jpg)
+Chương trình làm việc bao gồm các nội dung trọng điểm sau:
+\n
+- Kế hoạch giới thiệu việc làm, tổ chức cho sinh viên kiến tập, thực tập tại công ty trong thời gian tới.
+- Trao đổi các thông tin tuyển dụng nhân sự, các yêu cầu về trình độ chuyên môn và kỹ năng mềm của ứng viên.
+- Thực hiện khảo sát, tham gia góp ý của công ty trong việc ứng dụng chương đào tạo theo nhu cầu hiện nay của công ty nói riêng và doanh nghiệp trên địa bản tỉnh nói chung
+- Tổ chức cho giảng viên DNTU đến tham quan học hỏi mô hình sản xuất, vận hành theo kỹ thuật tân tiến hiện nay.
+![Thầy TS. Trần Đức Thuận - Phó Hiệu trưởng Nhà trường trao đổi các nội dung hợp tác với đại diện công ty LIXIL](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/LX1.jpg)
+Trong những năm gần đây, Nhà trường luôn chú trọng vấn đề liên kết đào tạo giữa nhà trường và doanh nghiệp nhằm đào tạo nguồn nhân lực có chất lượng, đáp ứng được yêu cầu của doanh nghiệp.
+\n
+Việc doanh nghiệp cùng tham gia vào việc xây dựng chương trình đào tạo, tổ chức đào tạo và đánh giá người học, định hướng nghề nghiệp cho sinh viên, hỗ trợ sinh viên đến các doanh nghiệp thực tập có ý nghĩa rất quan trọng, giúp sinh viên có cơ hội tiếp cận và cọ sát với môi trường thực tế, góp phần rút ngắn khoảng cách từ nhà trường đến doanh nghiệp. Từ đó giúp các doanh nghiệp giải quyết được bài toán về nguồn nhân lực chất lượng cao cũng như giúp cho sinh viên Nhà trường tìm kiếm được việc làm phù hợp ngay sau khi ra trường. 
+`,
+   author: "Samantha Lee",
+    date: "22/04/2023",
+    image: "https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/LX3.jpg",
   },
   {
     id: 4,
-    title: "Local Restaurant Wins Award for Best Burger",
+    title: `**# Trường Đại học Công nghệ Đồng Nai tham dự lễ kỷ niệm 15 năm thành lập nhà máy Bosch tại Long Thành- Đồng Nai**`,
     content:
-      "A popular restaurant in town has won an award for their delicious burger, which features a unique blend of spices and seasonings. Customers have been raving about the burger, and the restaurant is thrilled to receive this recognition.",
+`
+Ngày 19/4/2023, Trường Đại học Công nghệ Đồng Nai (DNTU) tham dự lễ kỷ niệm 15 năm thành lập Nhà máy Bosch tại KCN Long Thành (H.Long Thành, tỉnh Đồng Nai) và 10 năm thành lập Trung tâm Đào tạo nghề kỹ thuật công nghiệp Bosch tại Đồng Nai (Bosch TGA). Sau 15 năm thành lập, Tập đoàn Bosch đã đầu tư vào nhà máy ở Đồng Nai gần 400 triệu USD để mở rộng các dây chuyền sản xuất. Bosch là một trong những nhà máy được công nhận ứng dụng công nghệ cao sớm nhất trên địa bàn tỉnh Đồng Nai. Đến nay, Nhà máy Bosch đã sản xuất ra hơn 50 triệu sản phẩm xuất khẩu vào thị trường châu Á - Thái Bình Dương và Bắc Mỹ.
+![](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/BO5.jpg)
+Tham dự buổi lễ có **đồng chí Nguyễn Sơn Hùng - Phó Chủ tịch UBND tỉnh Đồng Nai, về phía DNTU có: TS. Phan Ngọc Sơn - Chủ tịch Hội đồng trường, Thầy Nguyễn Đình Thuật - Trưởng phòng Quan hệ Doanh nghiệp và Thầy Lê Thế Vinh.**
+\n
+Là một trong những đối tác cung cấp nguồn nhân lực chất lượng cao cho Bosch hàng năm, DNTU vinh dự là trường đại học duy nhất tại Đồng Nai được Công ty TNHH Bosch Việt Nam lựa chọn mời tham dự lễ kỷ niệm với tư cách là đối tác giáo dục.
+1[TS. Phan Ngọc Sơn - Chủ tịch Hội đồng trường gặp gỡ đồng chí Nguyễn Sơn Hùng - Phó Chủ tịch UBND tỉnh Đồng Nai](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/BO1.jpg)
+Phát biểu tại buổi lễ, đồng chí Nguyễn Sơn Hùng - Phó Chủ tịch UBND tỉnh Đồng Nai cho biết sẽ luôn tạo mọi điều kiện thuận lợi để các doanh nghiệp đang hoạt động tại Đồng Nai nói chung và Bosch nói riêng hoạt động hiệu quả và lớn mạnh.
+![Đồng chí Nguyễn Sơn Hùng - Phó Chủ Tịch UBND tỉnh Đồng Nai phát biểu nhân dịp thành lập nhà máy Bosch](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/BO3.jpeg)
+Sau buổi lễ, TS. Phan Ngọc Sơn đã có các cuộc gặp bên lề với lãnh đạo Trường Đại học Sư Phạm Kỹ Thuật Thành phố Hồ Chí Minh (HCMUTE). Hai bên cùng thống nhất những nội dung hợp tác trọng điểm trong thời gian tới như: **trong tháng 6 sẽ tổ chức chương trình Uni tour với sự tham gia của 02 trường chủ quản là DNTU và HCMUTE nhằm thảo luận các vấn đề về chiến lược hợp tác của 02 đơn vị, kết nối trong lĩnh vực đào tạo và nghiên cứu khoa học trong tương lai.**
+![TS. Phan Ngọc Sơn - Chủ tịch Hội đồng trường gặp gỡ lãnh đạo Trường Đại học Sư Phạm Kỹ Thuật Thành phố Hồ Chí Minh](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/BO4.jpg)
+TS. Phan Ngọc Sơn cũng dành thời gian để thăm hỏi, trao đổi và thảo luận với cựu sinh viên, thực tập sinh của DNTU đang làm việc tại đây. Qua buổi trao đổi ngắn, TS. Phan Ngọc Sơn đã nắm bắt được tâm tư, nguyện vọng của thực tập sinh và cựu sinh viên về chương trình đào tạo, chất lượng đào tạo cũng như cơ sở vật chất nhà trường. Từ đó có những định hướng phát triển đổi mới hơn trong tương lai.
+`,
     author: "Mike Johnson",
-    date: "07/08/2022",
-    image: "https://dntu.edu.vn/Data/News/120/images/chuphinhluuniem.jpg",
+    date: "21/04/2023",
+    image: "https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/BO5.jpg",
   },
+  {
+    id: 5,
+    title: `**# Trường Đại học Công nghệ Đồng Nai tiếp đón và làm việc với GS. Lin Pin - Chuyên gia giáo dục đến từ Đài Loan**`,
+    content:
+`
+Chiều 17/4/2023, Trường Đại học Công nghệ Đồng Nai (DNTU) tiếp đón và làm việc với GS. Lin Pin - Chuyên gia giáo dục đến từ Đài Loan.
+![](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/L1.jpg)
+Tham dự buổi làm việc:
+\n
+Về phía Trường Đại học Công nghệ Đồng Nai có:
+\n
+- TS. Phan Ngọc Sơn - Chủ tịch Hội đồng trường
+-TS. Trần Đức Thuận - Phó Hiệu trưởng
+- NCS. Phan Võ Quỳnh Như - Phó Hiệu trưởng
+- TS. Quách An Bình - Trưởng phòng Đào tạo - Khảo thí
+- TS. Trần Thanh Đại - Trưởng Khoa Y
+- TS. Nguyễn Minh Thiện - Trưởng Khoa Ngoại ngữ
+- Th.S Nguyễn Thị Ngọc Phương - Tổ trưởng bộ môn Điều dưỡng
+- Th.S Tạ Thị Lê Thu - Tổ trưởng bộ môn tiếng Hoa
+\n
+Về phía Công ty cổ phần Giáo dục và Tư vấn LV&F có:
+\n  
+- TS. Nguyễn Thanh Nhân - Chuyên gia
+- GS. Lin Pin - Chuyên gia giáo dục đến từ Đài Loan
+TS. Phan Ngọc Sơn - Chủ tịch Hội đồng trường chia sẻ trong buổi làm việc: “Trường Đại học Công nghệ Đồng Nai luôn nỗ lực nâng cao chất lượng đào tạo và nghiên cứu khoa học theo hướng quốc tế hóa, Nhà trường luôn xác định rõ nguồn nhân lực chính là yếu tố then chốt. Vì vậy, Nhà trường luôn tập trung đầu tư nâng cao chất lượng đội ngũ giảng viên, trong đó có nhiều giảng viên đã và đang học tập tại Đài Loan. Ngoài ra, Nhà trường cũng thu hút các nhà khoa học và chuyên gia hàng đầu về làm việc tại Trường, với nhiều chính sách hấp dẫn. Hy vọng trong thời gian tới, Nhà trường có thể tiếp đón và làm việc với các giáo sư, giảng viên cũng như có thể tổ chức nhiều hội thảo với sự tham gia của các trường Đại học tại Đài Loan đặc biệt là ngành Điều Dưỡng và tiếng Hoa.”
+![TS. Phan Ngọc Sơn - Chủ tịch Hội đồng trường chia sẻ trong buổi làm việc](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/L2.jpg)
+Chương trình làm việc bao gồm các nội dung nổi bật sau:
+\n
+- **DNTU đề xuất các chương trình đào tạo quốc tế với các đối tác Đài Loan nói chung và Trường Đại học Á Châu (Asia University) nói riêng cho ngành Điều dưỡng và Tiếng  Hoa của Nhà trường.**
+- **Hai bên cùng thống nhất đề xuất triển khai các chương trình đào tạo 1+4, 2+2 trong đó sinh viên sẽ tham gia học tập tại Việt Nam 1 năm sau đó sẽ qua Đài Loan để tiếp tục chương trình học. Hoặc sinh viên cũng có thể tham gia chương trình đào tạo song bằng, cùng lúc học tập tại DNTU và Trường Đại học tại Đài Loan.**
+- **DNTU đề xuất các chương trình trao đổi, tổ chức các khóa học ngắn hạn về văn hóa và học thuật tại Đài Loan nhằm tạo điều kiện cho giảng viên và sinh viên bước đầu trải nghiệm các nền văn hóa và môi trường học tập mới, hướng đến tổ chức các chuyến đi với thời gian dài hạn hơn;**
+Cũng trong buổi làm việc, GS. Lin Pin chia sẻ “ Hiện nay Đài Loan có rất nhiều chính sách thu hút du học sinh quốc tế đến học tập và làm việc tại các bệnh viện trong nước, điều này đảm bảo đầu ra việc làm cho sinh viên ngành Điều dưỡng cũng như nhiều ngành nghề khác sau khi tốt nghiệp. Về chi phí, tùy vào từng chương trình học, sinh viên có thể xin cấp học bổng hoặc có thể làm thêm để chi trả cho khoản sinh hoạt phí tại Đài Loan”.
+![GS. Lin Pin - Chuyên gia giáo dục đến từ Đài Loan chia sẻ trong buổi làm việc](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/L5.jpg)
+![](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/L4.jpg)
+Sau buổi gặp mặt, hai bên hi vọng sẽ có những dịp triển khai các chương trình hợp tác như tổ chức hội thảo khoa học, các buổi nói chuyện chuyên đề liên quan đến các lĩnh vực mà các bên cùng quan tâm.
+![](https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/L3.jpg)
+Bên cạnh việc đầu tư vào đội ngũ học thuật, DNTU không ngừng nâng cấp cơ sở vật chất đạt chuẩn quốc tế, ứng dụng công nghệ trong giảng dạy với quyết tâm theo đuổi chiến lược quốc tế hóa, nâng cao chất lượng đào tạo, cung cấp nguồn nhân lực có trình độ quốc tế, đáp ứng tốt thị trường nhân lực chất lượng cao trong và ngoài nước.
+`,
+    author: "Mike Johnson",
+    date: "19/04/2023",
+    image: "https://dntu.edu.vn/userfiles/images/bai-viet/04-2023/L1.jpg",
+  },
+//   {
+//     id: 4,
+//     title: `**# **`,
+//     content:
+// `
+
+// `,
+//     author: "Mike Johnson",
+//     date: "07/08/2022",
+//     image: "",
+//   },
+//   {
+//     id: 4,
+//     title: `**# **`,
+//     content:
+// `
+
+// `,
+//     author: "Mike Johnson",
+//     date: "07/08/2022",
+//     image: "",
+//   },
+//   {
+//     id: 4,
+//     title: `**# **`,
+//     content:
+// `
+
+// `,
+//     author: "Mike Johnson",
+//     date: "07/08/2022",
+//     image: "",
+//   },
 ];
 
 const DNTUNewsScreen = ({navigation}) => {
@@ -116,8 +241,10 @@ const DNTUNewsScreen = ({navigation}) => {
           />
         </View>
         <View style={styles.news_content_container}>
-          <Text style={styles.news_title} numberOfLines={2}>{item.title}</Text>
-          <Text style={styles.news_content} numberOfLines={4}>{item.content}</Text>
+          <View>
+          <Text numberOfLines={3}><MarkFormat text = { item.title } /></Text>
+          </View>
+          <Text style={styles.news_content} numberOfLines={4}><MarkFormat text = { item.content } /></Text>
           <Text style={styles.date} numberOfLines={1}>{item.date}</Text>
         </View>
       </TouchableOpacity>
