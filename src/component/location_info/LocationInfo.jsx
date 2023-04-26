@@ -38,9 +38,7 @@ const LocationInfo = ({ latitude, longitude }) => {
       });
   },[]);
 
-  console.log(location)
-  console.log(longitude)
-  console.log(latitude)
+  
 
   useEffect(() => {
     const API_KEY = '795b1a0c197fe09b2e9953455311dfea';

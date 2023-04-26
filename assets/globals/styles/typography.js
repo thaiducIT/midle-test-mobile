@@ -1,4 +1,9 @@
 import { StyleSheet } from 'react-native'
+import * as Font from 'expo-font';
+
+
+
+
 
 // Tuan: Trong file này không có color. Color thì tự custom sau.
 // Tuan: Và cái này có thể thay đổi cho phù hợp. Hiện tại type chỉ đang là test thôi.

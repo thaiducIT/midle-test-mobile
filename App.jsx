@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import store from "./redux/store";
+import { Provider } from "react-redux";
+
 import {
   ApplicationProvider,
   Layout,
@@ -17,9 +20,21 @@ import BottomTabNavigator from "@navigation/bottom_tab_navigation/BottomTabNavig
 
 import SplashScreen from "@screens/splash_screen/SplashScreen";
 import { VirtualizedList } from "react-native";
+import * as Font from 'expo-font';
+
+async function loadFonts() {
+  await Font.loadAsync({
+    'Roboto-Bold': require('@assets/fonts/Roboto-Bold.ttf'),
+    'Roboto-BoldItalic': require('@assets/fonts/Roboto-BoldItalic.ttf'),
+   
+  });
+}
+
 const App = () => {
   const [theme, setTheme] = useState("light");
-
+  useEffect(()=>{
+    loadFonts()
+  })
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
@@ -33,7 +48,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider
         mapping={mapping}
@@ -41,7 +56,7 @@ const App = () => {
       >
         {isVisible ? <SplashScreen /> : <BottomTabNavigator />}
       </ApplicationProvider>
-    </>
+    </Provider>
   );
 };
 
